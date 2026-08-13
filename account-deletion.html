@@ -1,119 +1,120 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>강남Chat 계정 및 데이터 삭제 요청</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>계정 및 데이터 삭제 안내 · 강남Chat</title>
+<meta name="description" content="강남Chat 계정과 학습 데이터를 삭제하는 방법을 안내합니다.">
 <style>
-  :root { --ink:#1a2233; --muted:#5b6678; --line:#e3e8f0; --accent:#16386b; --bg:#ffffff; --ok:#1f6b3a; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:#f5f7fa; color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;
-    line-height:1.72; -webkit-text-size-adjust:100%; }
-  .wrap { max-width:680px; margin:0 auto; background:var(--bg); padding:40px 28px 64px; }
-  h1 { font-size:23px; margin:0 0 6px; color:var(--accent); letter-spacing:-0.3px; }
-  .sub { color:var(--muted); font-size:13.5px; margin:0 0 26px; }
-  h2 { font-size:16.5px; margin:34px 0 10px; padding-top:18px; border-top:1px solid var(--line); color:var(--accent); }
-  p, li { font-size:14.5px; }
-  ul, ol { padding-left:20px; margin:8px 0; }
-  li { margin:6px 0; }
-  .card { background:#f0f4fa; border-radius:10px; padding:16px 18px; margin:10px 0; }
-  label { display:block; font-size:13.5px; font-weight:600; margin:14px 0 5px; color:var(--ink); }
-  input, textarea { width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:8px;
-    font-size:14.5px; font-family:inherit; color:var(--ink); background:#fff; }
-  textarea { min-height:84px; resize:vertical; }
-  .req { color:#c0392b; }
-  button { margin-top:18px; width:100%; padding:13px; border:0; border-radius:9px; background:var(--accent);
-    color:#fff; font-size:15px; font-weight:600; cursor:pointer; font-family:inherit; }
-  button:hover { background:#0f2c57; }
-  .note { font-size:12.5px; color:var(--muted); margin-top:10px; }
-  .ok { display:none; background:#e8f5ed; border:1px solid #b7dcc4; color:var(--ok);
-    border-radius:8px; padding:12px 14px; margin-top:14px; font-size:13.5px; }
-  a { color:var(--accent); }
-  footer { margin-top:36px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:12.5px; }
+  :root{ --brand:#1E4299; --ink:#1a2233; --muted:#6b7686; --line:#e3e8f0; --bg:#f7f9fc; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
+       line-height:1.75;-webkit-text-size-adjust:100%}
+  .wrap{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+  header{border-bottom:3px solid var(--brand);padding-bottom:20px;margin-bottom:8px}
+  h1{font-size:25px;margin:0 0 10px;color:var(--brand);letter-spacing:-.02em}
+  .meta{font-size:14px;color:var(--muted);margin:0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 24px;margin-top:24px}
+  h2{font-size:17px;margin:34px 0 10px;color:var(--brand);letter-spacing:-.01em}
+  h2:first-child{margin-top:0}
+  p{margin:0 0 12px;font-size:15px}
+  ol,ul{margin:0 0 12px;padding-left:22px;font-size:15px}
+  li{margin-bottom:7px}
+  .box{background:#f2f6fc;border-left:4px solid var(--brand);border-radius:0 8px 8px 0;
+       padding:14px 16px;margin:16px 0;font-size:14.5px}
+  .box strong{color:var(--brand)}
+  .warn{background:#fff6f2;border-left:4px solid #d9660a;border-radius:0 8px 8px 0;
+        padding:14px 16px;margin:16px 0;font-size:14.5px}
+  .warn strong{color:#b9540a}
+  .steps{counter-reset:s;list-style:none;padding:0;margin:14px 0}
+  .steps li{counter-increment:s;position:relative;padding:14px 16px 14px 52px;background:#fbfcfe;
+            border:1px solid var(--line);border-radius:10px;margin-bottom:10px;font-size:15px}
+  .steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:24px;height:24px;
+            background:var(--brand);color:#fff;border-radius:50%;display:flex;align-items:center;
+            justify-content:center;font-size:13px;font-weight:700}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14.5px;min-width:480px}
+  th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  th{background:#f2f6fc;color:var(--brand);font-weight:700;white-space:nowrap}
+  .mail{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;
+        padding:12px 22px;border-radius:10px;font-weight:700;font-size:15px;margin:6px 0}
+  footer{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+  footer dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:0 0 14px}
+  footer dt{font-weight:700;color:var(--ink);white-space:nowrap}
+  footer dd{margin:0}
+  a{color:var(--brand)}
+  a:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:3px}
+  .back{display:inline-block;margin-bottom:18px;font-size:14px;text-decoration:none}
+  @media (max-width:520px){ .wrap{padding:26px 16px 60px} h1{font-size:21px} footer dl{grid-template-columns:1fr;gap:2px 0} footer dt{margin-top:8px} }
 </style>
 </head>
 <body>
 <div class="wrap">
+  <a class="back" href="./">← 강남Chat 법적 고지</a>
 
-  <h1>강남Chat 계정 및 데이터 삭제 요청</h1>
-  <p class="sub">강남Chat(수학 학습 앱) 계정과 관련 데이터의 삭제를 요청하는 페이지입니다.</p>
-
-  <h2>삭제되는 정보</h2>
-  <p>계정 삭제 요청이 처리되면 아래 정보가 영구 삭제되며, 삭제된 계정은 복구할 수 없습니다.</p>
-  <ul>
-    <li>계정 식별 정보(휴대전화번호) 및 프로필(이름·생년월일·학년·학습 목표)</li>
-    <li>학습 활동 데이터(푼 문제·정오답·풀이 과정·AI 대화 내용·학습 진단/등급·취약점 분석)</li>
-    <li>업로드한 문제 사진 등 이용자에게 귀속된 모든 데이터</li>
-  </ul>
-
-  <h2>보존되는 정보(법령상 예외)</h2>
-  <p>관계 법령에 따라 보존 의무가 있는 정보는 해당 기간 동안 다른 정보와 분리하여 안전하게 보관한 뒤 파기합니다.</p>
-  <ul>
-    <li>계약·청약철회 및 대금결제에 관한 기록: 5년 (전자상거래 등에서의 소비자보호에 관한 법률)</li>
-    <li>소비자 불만 또는 분쟁처리에 관한 기록: 3년 (동법)</li>
-  </ul>
-
-  <h2>방법 1 · 앱에서 직접 삭제 (권장)</h2>
-  <p>앱에 로그인할 수 있는 경우 가장 빠릅니다.</p>
-  <ol>
-    <li>강남Chat 앱 실행 → <b>설정</b> 메뉴 진입</li>
-    <li><b>계정 삭제</b> 선택 → 안내 확인 후 삭제 실행</li>
-  </ol>
-
-  <h2>방법 2 · 웹으로 삭제 요청</h2>
-  <p>앱에 접근할 수 없는 경우 아래 양식으로 요청하세요. 제출 시 메일 작성 화면이 열리며, 본인 확인 후 처리됩니다.</p>
+  <header>
+    <h1>강남Chat 계정 및 데이터 삭제 안내</h1>
+    <p class="meta">최종 업데이트: 2026년 8월 13일</p>
+  </header>
 
   <div class="card">
-    <label>가입 시 사용한 휴대전화번호 <span class="req">*</span></label>
-    <input id="phone" type="tel" inputmode="tel" placeholder="010-0000-0000" autocomplete="off">
 
-    <label>회신 받을 이메일 (선택)</label>
-    <input id="email" type="email" placeholder="회신이 필요하면 입력하세요" autocomplete="off">
+    <p>강남Chat 이용자는 언제든지 본인의 계정과 학습 데이터를 삭제할 수 있습니다. 삭제 방법은 아래와 같습니다.</p>
 
-    <label>추가 메모 (선택)</label>
-    <textarea id="memo" placeholder="요청 사유나 전달할 내용이 있으면 적어주세요"></textarea>
+    <div class="warn">
+      <strong>구독 중이시라면 삭제 전에 먼저 해지해 주세요.</strong> 구독은 Google Play가 관리하므로 <b>계정을 삭제해도 구독은 자동으로 해지되지 않습니다.</b> 해지하지 않으면 요금이 계속 청구될 수 있습니다.<br>
+      해지 경로: <b>Google Play 스토어 앱 → 프로필 → 결제 및 정기 결제 → 정기 결제 → 강남Chat → 정기 결제 취소</b>
+    </div>
 
-    <button id="submitBtn" type="button">삭제 요청 메일 작성</button>
-    <div class="ok" id="okMsg">메일 작성 창이 열렸습니다. 내용을 확인하고 전송하시면 요청이 접수됩니다.</div>
-    <p class="note">제출 시 기기의 메일 앱이 열리며 요청 내용이 자동으로 채워집니다. 메일이 열리지 않으면
-      subist92@naver.com 으로 직접 보내주세요.</p>
+    <h2>1. 앱 내에서 직접 삭제 (권장)</h2>
+    <ol class="steps">
+      <li>강남Chat 앱을 실행하고 로그인합니다.</li>
+      <li><b>설정 &gt; 계정 삭제</b> 메뉴로 이동합니다.</li>
+      <li>안내에 따라 2단계 확인을 완료하면 계정과 학습 데이터가 즉시 삭제됩니다.</li>
+    </ol>
+
+    <h2>2. 웹으로 삭제 요청</h2>
+    <p>앱을 사용할 수 없는 경우, 아래 이메일로 삭제를 요청할 수 있습니다. 계정 확인을 위해 <b>가입에 사용한 이메일 주소</b>를 함께 보내주세요.</p>
+    <p><a class="mail" href="mailto:subist92@naver.com?subject=%5B%EA%B3%84%EC%A0%95%20%EC%82%AD%EC%A0%9C%20%EC%9A%94%EC%B2%AD%5D%20%EA%B0%80%EC%9E%85%20%EC%9D%B4%EB%A9%94%EC%9D%BC%20">계정 삭제 요청 메일 쓰기</a></p>
+    <div class="box">
+      삭제 요청 이메일: <a href="mailto:subist92@naver.com">subist92@naver.com</a><br>
+      제목 예시: <b>[계정 삭제 요청] 가입 이메일 000@000.com</b><br>
+      <strong>본인 확인을 위하여 가입한 이메일 주소에서 직접 보내주시기 바랍니다.</strong> 다른 주소에서 보내신 경우 추가 확인을 요청드릴 수 있습니다.
+    </div>
+    <p>요청 접수 후 <b>영업일 기준 3일 이내</b>에 처리하며, 처리 완료 시 회신드립니다.</p>
+
+    <h2>3. 삭제되는 데이터 및 보관</h2>
+    <div class="scroll">
+    <table>
+      <tr><th>구분</th><th>처리</th></tr>
+      <tr><td>계정 정보(이메일 주소, 비밀번호)</td><td>즉시 삭제</td></tr>
+      <tr><td>프로필 정보(이름·학년·학습 설정)</td><td>즉시 삭제</td></tr>
+      <tr><td>학습 데이터(문제 풀이 기록·진단 결과·학습 등급·모의고사 결과)</td><td>즉시 삭제</td></tr>
+      <tr><td>AI 튜터와 주고받은 학습 대화</td><td>즉시 삭제</td></tr>
+      <tr><td>결제·계약 관련 기록</td><td>「전자상거래 등에서의 소비자보호에 관한 법률」 등 관계 법령에서 보관을 요구하는 경우, 해당 기간(계약·결제 5년 / 소비자 불만·분쟁처리 3년) 동안 보관 후 파기</td></tr>
+    </table>
+    </div>
+    <p class="meta">법령에 따라 보관되는 기록은 그 기간 동안에도 <b>법령이 정한 목적 외에는 이용되지 않습니다.</b></p>
+    <p class="meta">사진챗에 업로드한 이미지는 애초에 서버에 저장되지 않으므로 별도 삭제 대상이 아닙니다.</p>
+
+    <div class="warn">
+      <strong>삭제된 학습 데이터는 복구할 수 없습니다.</strong> 그동안의 풀이 기록, 진단 결과, 등급 이력이 모두 사라집니다. 신중히 결정해 주세요.
+    </div>
+
+    <footer>
+      <dl>
+        <dt>상호</dt><dd>찬스홈(Chance Home)</dd>
+        <dt>대표자</dt><dd>정운섭</dd>
+        <dt>사업자등록번호</dt><dd>391-08-01221</dd>
+        <dt>통신판매업 신고번호</dt><dd>2026-서울성북-0747 (신고기관: 성북구청)</dd>
+        <dt>고객문의</dt><dd><a href="mailto:subist92@naver.com">subist92@naver.com</a></dd>
+      </dl>
+      <p style="margin:0"><a href="./">법적 고지 홈</a> · <a href="./terms.html">이용약관</a> · <a href="./privacy-policy.html">개인정보처리방침</a></p>
+      <p style="margin:8px 0 0">© 2026 찬스홈(Chance Home).</p>
+    </footer>
+
   </div>
-
-  <h2>처리 기한</h2>
-  <p>요청 접수 후 본인 확인을 거쳐 7일 이내에 계정과 관련 데이터를 삭제하고 결과를 안내합니다.</p>
-
-  <h2>문의</h2>
-  <p>이메일: subist92@naver.com</p>
-
-  <footer>강남Chat · 본 페이지는 계정 및 데이터 삭제 요청 전용입니다. · <a href="https://subist92-code.github.io/gangnam-legal/privacy-policy.html">개인정보처리방침</a></footer>
 </div>
-
-<script>
-  (function () {
-    var OPERATOR_EMAIL = "subist92@naver.com";
-    document.getElementById("submitBtn").addEventListener("click", function () {
-      var phone = document.getElementById("phone").value.trim();
-      var email = document.getElementById("email").value.trim();
-      var memo  = document.getElementById("memo").value.trim();
-      if (!phone) { alert("가입 시 사용한 휴대전화번호를 입력해주세요."); return; }
-      var subject = "[강남Chat] 계정 및 데이터 삭제 요청";
-      var lines = [
-        "강남Chat 계정 삭제를 요청합니다.",
-        "",
-        "가입 휴대전화번호: " + phone,
-        "회신 이메일: " + (email || "(미입력)"),
-        "추가 메모: " + (memo || "(없음)"),
-        "",
-        "위 계정과 관련된 모든 개인정보 및 학습 데이터의 삭제를 요청합니다."
-      ];
-      var href = "mailto:" + encodeURIComponent(OPERATOR_EMAIL)
-        + "?subject=" + encodeURIComponent(subject)
-        + "&body=" + encodeURIComponent(lines.join("\n"));
-      window.location.href = href;
-      document.getElementById("okMsg").style.display = "block";
-    });
-  })();
-</script>
 </body>
 </html>
